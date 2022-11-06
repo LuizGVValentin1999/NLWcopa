@@ -51,11 +51,15 @@ export function AuthContextProvider({ children }) {
     try {
       setIsUserLoading(true);
       
+      //chamando o token do servidor - (aqui esta sendo passado o token do google para criar ou logar o usuario) 
       const tokenResponse = await api.post('/users', { access_token });
+      //aqui temos o retorno o token do servidor para poder utilizar a aplicação (colocando o header para sempre passar a cada requisição)
       api.defaults.headers.common['Authorization'] = `Bearer ${tokenResponse.data.token}`;
 
+      //fazendo chamda da função 'me' servidor para deixar as informações de usuario e logar no aplicativo
       const userInfoResponse = await api.get('/me');
       setUser(userInfoResponse.data.user);
+
     } catch (error) {
       console.log(error);
       throw error;

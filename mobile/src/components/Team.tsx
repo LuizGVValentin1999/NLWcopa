@@ -15,12 +15,13 @@ export function Team({ code, position, onChangeText }: Props) {
       {position === 'left' && <CountryFlag isoCode={code} size={25} style={{ marginRight: 12 }} />}
 
       <Input
-        w={10}
+        w={12}
         h={9}
         textAlign="center"
         fontSize="xs"
         keyboardType="numeric"
         onChangeText={onChangeText}
+        maxLength={2}
       />
 
       {position === 'right' && <CountryFlag isoCode={code} size={25} style={{ marginLeft: 12 }} />}

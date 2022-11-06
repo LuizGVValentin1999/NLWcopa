@@ -14,6 +14,7 @@ interface Props {
 
 export function Guesses({ poolId, code }: Props) {
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingGame, setIsLoadingGame] = useState(false);
   const [games, setGames] = useState<GameProps[]>([]);
   const [firstTeamPoints, setFirstTeamPoints] = useState('');
   const [secondTeamPoints, setSecondTeamPoints] = useState('');
@@ -40,6 +41,7 @@ export function Guesses({ poolId, code }: Props) {
 
   async function handleGuessConfirm(gameId: string) {
     try {
+      setIsLoadingGame(true);
       if (!firstTeamPoints.trim() || !secondTeamPoints.trim()) {
         return toast.show({
           title: 'Informe o placar para palpitar',
@@ -69,6 +71,8 @@ export function Guesses({ poolId, code }: Props) {
         placement: 'top',
         bgColor: 'red.500'
       });
+    } finally {
+      setIsLoadingGame(false);
     }
   }
 
@@ -90,6 +94,7 @@ export function Guesses({ poolId, code }: Props) {
           setFirstTeamPoints={setFirstTeamPoints}
           setSecondTeamPoints={setSecondTeamPoints}
           onGuessConfirm={() => handleGuessConfirm(item.id)}
+          setisLoading={isLoadingGame}
         />
       )}
       _contentContainerStyle={{ pb: 10 }}

@@ -82,6 +82,7 @@ export function Find() {
         <Button
           title="BUSCAR POR CÓDIGO"
           onPress={handleJoinPool}
+          isLoading={isLoading}
         />
       </VStack>
     </VStack>

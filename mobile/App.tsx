@@ -13,9 +13,10 @@ export default function App() {
 
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_500Medium, Roboto_700Bold });
 
+  //AuthContextProvider é o header da aplicação onde fica o token do servidor assim sempre que o sistema fizer uma requisição não é necessario  passar o token pois ele ja esta no header
   return (
     <NativeBaseProvider theme={THEME}>
-      <AuthContextProvider>
+      <AuthContextProvider> 
         <StatusBar 
           barStyle='light-content'
           backgroundColor="transparent"
